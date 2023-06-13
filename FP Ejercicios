@@ -1,0 +1,40 @@
+0)  Def espar = eq o [* o [length o iota o % o [id, ~2], ~2], id]
+    Def iota = funrec o [id,~<>]
+    Def funrec = < o [1, ~1] -> 2; funrec o [- o [1, ~1], apndl]
+
+1)
+a) 	Def max = (> -> 1; 2)
+b) 	Def maxSecuencia = /max
+c) 	Def primerAtom = buscaAtom 1
+
+5) 	
+a) 	Def planchar =  concatSeq o crearVacia
+    Def concatSeq = (atom o 2 -> 1; (atom o 1 o 2-> concatSeq o [apndr o [1, 1 o 2], tl o 2]; concatSeq o [concat o [1, planchar o 1 o 2], tl o 2]))
+    Def crearVacia = [~<>, id]
+b)  Def concat = (atom o 2 -> 1; concat o [apndr o [1, 1 o 2], tl o 2])
+c) 
+d)  Def sort = /(> -> [2, 1]; id)
+e)  Def profundidad = /max o @(atom -> ~1; + o [~1, profundidad])
+
+6)  Def distanciaAlCuadrado = /+ o @(* o [id, id]) o @- o trans
+
+7)  Def coincidencia = not o atom o intersec
+
+8)  Def productoEscalar = /+ o @(/*)
+
+9)  Def sumaDeMayores = /+ o (espar o length -> getPares o crearVacia; getPares o crearVacia o tlr) o @(/max) o trans
+    Def getPares = < o [length o 2, ~3] -> apndr o [1, 2 o 2]; getPares o [apndr o [1, 2 o 2], tl o tl o 2] 
+    Def columnasPares = (eq o [% o [length, ~2], ~0])
+
+10) Def selectorPorIzquierda = eq o [1 o 1, ~1] -> selectorPorIzquierdaSimple o [2 o 1, 1 o 2]; selectorPorIzquierda o [[- o [1 o 1, ~1], 2 o 1], tl o 2]
+    Def selectorPorIzquierdaSimple = eq o [1, ~1] -> 1 o 2; selectorPorIzquierdaSimple o [- o [1, ~1], tl o 2]
+
+11) Def sumaVectorial = @+ o trans
+
+Parcial:
+
+Def puntaje = (eq o [length, ~1] -> partido; + o [puntaje o tl, partido])
+Def partido = (> o 1 -> ~3; (eq o 1 -> ~1; ~0))
+    
+
+
